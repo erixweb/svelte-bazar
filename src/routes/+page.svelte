@@ -19,6 +19,11 @@
 	}
 </script>
 
+<svelte:head>
+	<title>
+		Bazar amb Svelte
+	</title>
+</svelte:head>
 <main class="w-full max-w-[50em] p-[25px] m-auto font-sans">
 	<form class="w-full flex justify-center items-center flex-col" on:submit={(e) => filter(e)}>
 		<h2 class="text-center font-bold text-[25px]">Buscar</h2>
