@@ -33,11 +33,11 @@
 	<div class="flex max-[850px]:flex-col gap-[20px]">
 		{#if product}
 			<div class="order-2 w-full flex gap-[40px] max-[850px]:order-1 max-[850px]:justify-center max-[850px]:flex-col items-center">
-				<div class="text-right">
+				<div class="w-full flex items-center text-center justify-center">
 					<img
 						src={product?.thumbnail}
 						alt=""
-						class="h-[350px] max-md:h-[250px] max-md:max-w-[250px] w-full max-w-[350px] object-cover rounded-full"
+						class="h-[250px] w-[250px] max-md:h-[250px] max-md:max-w-[250px] object-cover rounded-full"
 					/>
 				</div>
 				<div class="flex flex-col flex-wrap max-[850px]:flex-row gap-[20px] w-full justify-center">
@@ -46,7 +46,7 @@
 					{/each}
 				</div>
 			</div>
-			<div class="order-1 max-[850px]:order-2 w-full">
+			<div class="order-1 max-[850px]:order-2 w-full p-[16px]">
 				<h2 class="text-[25px] font-bold mb-[10px]">
 					{product?.title}
 				</h2>
