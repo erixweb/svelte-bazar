@@ -1,42 +1,76 @@
 <script lang="ts">
+	import { goto } from "$app/navigation"
 	import { page } from "$app/stores"
+	import IconSearch from "$lib/IconSearch.svelte"
+	import { onMount } from "svelte"
 	import "../app.css"
 	import json from "../products.json"
 
 	let products = json["products"]
-	let restoreProducts = json["products"]
 
-	let search = $page.url.searchParams.get("cerca")!
+	let search = $page.url.searchParams.get("cerca") || ""
+	let category = $page.url.searchParams.get("categoria") || ""
 
-	if (search) {
-		filter()
-	}
-
-	function filter(e?: any) {
-		products = restoreProducts.filter((product) => {
-			return product.title.toLowerCase().includes(search)
-		})
+	handleSubmit()
+	function handleSubmit(e?: any) {
+		if (e) {
+			e.preventDefault()
+			goto(`?cerca=${search}&categoria=${category}`)
+			category = $page.url.searchParams.get("categoria")!
+		}
+		if (typeof window !== "undefined") {
+			fetch(`/api?cerca=${search}&categoria=${category}`)
+				.then((res) => res.json())
+				.then((data) => {
+					products = data
+				})
+		}
 	}
 </script>
 
 <svelte:head>
-	<title>
-		Bazar amb Svelte
-	</title>
+	<title>Bazar amb Svelte</title>
 </svelte:head>
 <main class="w-full max-w-[50em] p-[25px] m-auto font-sans">
-	<form class="w-full flex justify-center items-center flex-col" on:submit={(e) => filter(e)}>
-		<h2 class="text-center font-bold text-[25px]">Buscar</h2>
-		<input
-			type="text"
-			class="bg-slate-100 rounded-[7px] w-full max-w-[500px] p-[16px] justify-center flex"
-			name="cerca"
-			bind:value={search}
-		/>
+	<form
+		class="w-full flex justify-center items-center flex-col"
+		on:submit={(e) => handleSubmit(e)}
+	>
+		<h2 class="text-center font-bold text-[25px]">Cerca</h2>
+		<div
+			class="bg-slate-100 w-full inline-flex items-center max-w-[500px] p-[16px] gap-[10px] rounded-[7px]"
+		>
+			<IconSearch />
+			<input
+				type="text"
+				class="bg-transparent w-full justify-center flex outline-none"
+				bind:value={search}
+			/>
+		</div>
+		<div class="inline-flex mt-[20px] gap-[20px]">
+			<button
+				class="border-slate-400 border-[1px] text-[16px] p-[6px] rounded-full min-w-[100px]"
+				on:click={() => (category = "")}
+			>
+				tots
+			</button>
+			<button
+				class="border-slate-400 border-[1px] text-[16px] p-[6px] rounded-full min-w-[100px]"
+				on:click={() => (category = "smartphones")}
+			>
+				smartphones
+			</button>
+			<button
+				class="border-slate-400 border-[1px] text-[16px] p-[6px] rounded-full min-w-[100px]"
+				on:click={() => (category = "laptops")}
+			>
+				portàtils
+			</button>
+		</div>
 	</form>
-	<section>
+	<section class="w-full">
 		{#each products as product}
-			<article class="flex gap-[20px] p-[16px] items-center">
+			<article class="flex gap-[20px] p-[16px] items-center w-full">
 				<div>
 					<img
 						src={product.thumbnail}

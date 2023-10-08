@@ -21,8 +21,5 @@
 		"typescript": "5.2.2",
 		"vite": "4.4.11"
 	},
-	"type": "module",
-	"dependencies": {
-		"@tabler/icons-svelte": "^2.38.0"
-	}
+	"type": "module"
 }
