@@ -1,5 +1,5 @@
 import { filter } from "$lib/filter"
-import json  from "../../products.json"
+import json  from "../../../products.json"
 
 export const GET = ({ url }) => {
     const products = json["products"]

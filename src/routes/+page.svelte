@@ -16,10 +16,9 @@
 		if (e) {
 			e.preventDefault()
 			goto(`?cerca=${search}&categoria=${category}`)
-			category = $page.url.searchParams.get("categoria")!
 		}
 		if (typeof window !== "undefined") {
-			fetch(`/api?cerca=${search}&categoria=${category}`)
+			fetch(`/api/items?cerca=${search}&categoria=${category}`)
 				.then((res) => res.json())
 				.then((data) => {
 					products = data
@@ -47,7 +46,7 @@
 				bind:value={search}
 			/>
 		</div>
-		<div class="inline-flex mt-[20px] gap-[20px]">
+		<div class="inline-flex mt-[20px] mb-[20px] gap-[20px]">
 			<button
 				class="border-slate-400 border-[1px] text-[16px] p-[6px] rounded-full min-w-[100px]"
 				on:click={() => (category = "")}
@@ -70,15 +69,15 @@
 	</form>
 	<section class="w-full">
 		{#each products as product}
-			<article class="flex gap-[20px] p-[16px] items-center w-full">
+			<a href={`/api/items/${product.id}`} class="flex gap-[20px] p-[16px] items-center w-full max-[700px]:flex-col">
 				<div>
 					<img
 						src={product.thumbnail}
 						alt={`Foto de ${product.title}`}
-						class="rounded-full object-cover w-[100px] h-[100px]"
+						class="rounded-full object-cover w-[100px] h-[100px] max-[700px]:w-full max-[700px]:h-[250px]"
 					/>
 				</div>
-				<div>
+				<div class="w-full max-w-[400px]">
 					<h2 class="font-bold text-[20px]">
 						{product.title}
 					</h2>
@@ -89,7 +88,7 @@
 						€{product.price}
 					</p>
 				</div>
-			</article>
+			</a>
 		{/each}
 	</section>
 </main>
