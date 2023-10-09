@@ -2,7 +2,6 @@
 	import { goto } from "$app/navigation"
 	import { page } from "$app/stores"
 	import IconSearch from "$lib/IconSearch.svelte"
-	import { onMount } from "svelte"
 	import "../app.css"
 	import json from "../products.json"
 
@@ -13,6 +12,7 @@
 
 	handleSubmit()
 	function handleSubmit(e?: any) {
+		category = $page.url.searchParams.get("categoria") || ""
 		if (e) {
 			e.preventDefault()
 			goto(`?cerca=${search}&categoria=${category}`)
@@ -49,19 +49,19 @@
 		<div class="inline-flex mt-[20px] mb-[20px] gap-[20px]">
 			<button
 				class="border-slate-400 border-[1px] text-[16px] p-[6px] rounded-full min-w-[100px]"
-				on:click={() => (category = "")}
+				on:click={() => { $page.url.searchParams.set("categoria", "")}}
 			>
 				tots
 			</button>
 			<button
 				class="border-slate-400 border-[1px] text-[16px] p-[6px] rounded-full min-w-[100px]"
-				on:click={() => (category = "smartphones")}
+				on:click={() => { $page.url.searchParams.set("categoria", "smartphones") }}
 			>
 				smartphones
 			</button>
 			<button
 				class="border-slate-400 border-[1px] text-[16px] p-[6px] rounded-full min-w-[100px]"
-				on:click={() => (category = "laptops")}
+				on:click={() => { $page.url.searchParams.set("categoria", "laptops") }}
 			>
 				portàtils
 			</button>
@@ -69,7 +69,10 @@
 	</form>
 	<section class="w-full">
 		{#each products as product}
-			<a href={`/api/items/${product.id}`} class="flex gap-[20px] p-[16px] items-center w-full max-[700px]:flex-col">
+			<a
+				href={`/api/items/${product.id}`}
+				class="flex gap-[20px] p-[16px] items-center w-full max-[700px]:flex-col"
+			>
 				<div>
 					<img
 						src={product.thumbnail}
