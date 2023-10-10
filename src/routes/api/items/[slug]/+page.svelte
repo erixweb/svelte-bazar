@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { preloadData } from "$app/navigation"
 	import { page } from "$app/stores"
 	import json from "../../../../products.json"
 	import "../../../../app.css"
@@ -56,9 +55,11 @@
 				<div class="flex gap-[5px] mb-[30px]">
 					{#each stars as star}
 						{#if star === "x"}
-							<IconStar fill={true} />
+							<IconStar fill="x" />
+						{:else if star === "o"}
+							<IconStar fill="o" />
 						{:else}
-							<IconStar fill={false} />
+							<IconStar fill="m" />
 						{/if}
 					{/each}
 				</div>
@@ -68,6 +69,9 @@
 				<p class="max-w-[300px]">
 					{product?.description}
 				</p>
+				<button class="border-[1px] border-slate-300 rounded-[7px] p-[7px] px-[20px] w-full shadow-[0px_5px_10px] shadow-gray-200 hover:scale-110 duration-[250ms] mt-[40px]">
+					Comprar
+				</button>
 			</div>
 		{/if}
 	</div>

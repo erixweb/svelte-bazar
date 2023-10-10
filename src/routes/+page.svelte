@@ -2,6 +2,7 @@
 	import { goto } from "$app/navigation"
 	import { page } from "$app/stores"
 	import IconSearch from "$lib/IconSearch.svelte"
+	import Product from "$lib/product.svelte"
 	import "../app.css"
 	import json from "../products.json"
 
@@ -69,29 +70,9 @@
 	</form>
 	<section class="w-full">
 		{#each products as product}
-			<a
-				href={`/api/items/${product.id}`}
-				class="flex gap-[20px] p-[16px] items-center w-full max-[700px]:flex-col"
-			>
-				<div>
-					<img
-						src={product.thumbnail}
-						alt={`Foto de ${product.title}`}
-						class="rounded-full object-cover w-[100px] h-[100px] max-[700px]:w-full max-[700px]:h-[250px]"
-					/>
-				</div>
-				<div class="w-full max-w-[400px]">
-					<h2 class="font-bold text-[20px]">
-						{product.title}
-					</h2>
-					<p class="max-w-[450px]">
-						{product.description}
-					</p>
-					<p class="font-bold">
-						€{product.price}
-					</p>
-				</div>
-			</a>
+			<Product
+				{product}
+			/>
 		{/each}
 	</section>
 </main>
