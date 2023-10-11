@@ -7,7 +7,8 @@
 	const starsRound = Math.round(product.rating)
 
 	const stars = new Array(starsRound).fill("x")
-	if (starsRound > product.rating && stars.length < 5) {
+	if (starsRound > product.rating) {
+		stars.pop()
 		stars.push("m")
 	}
 	for (let i = starsRound; i < 5; i++) {
