@@ -50,29 +50,33 @@
 		<div class="inline-flex mt-[20px] mb-[20px] gap-[20px]">
 			<button
 				class="border-slate-400 border-[1px] text-[16px] p-[6px] rounded-full min-w-[100px]"
-				on:click={() => { $page.url.searchParams.set("categoria", "")}}
+				on:click={() => {
+					$page.url.searchParams.set("categoria", "")
+				}}
 			>
 				tots
 			</button>
 			<button
 				class="border-slate-400 border-[1px] text-[16px] p-[6px] rounded-full min-w-[100px]"
-				on:click={() => { $page.url.searchParams.set("categoria", "smartphones") }}
+				on:click={() => {
+					$page.url.searchParams.set("categoria", "smartphones")
+				}}
 			>
 				smartphones
 			</button>
 			<button
 				class="border-slate-400 border-[1px] text-[16px] p-[6px] rounded-full min-w-[100px]"
-				on:click={() => { $page.url.searchParams.set("categoria", "laptops") }}
+				on:click={() => {
+					$page.url.searchParams.set("categoria", "laptops")
+				}}
 			>
 				portàtils
 			</button>
 		</div>
 	</form>
-	<section class="w-full">
+	<section class="w-full grid grid-cols-3">
 		{#each products as product}
-			<Product
-				{product}
-			/>
+			<Product {product} />
 		{/each}
 	</section>
 </main>

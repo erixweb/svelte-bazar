@@ -16,15 +16,12 @@
 	}
 </script>
 
-<a
-	href={`/api/items/${product.id}`}
-	class="flex gap-[20px] p-[16px] items-center w-full max-[700px]:flex-col"
->
+<a href={`/api/items/${product.id}`} class="flex flex-col gap-[20px] p-[16px] items-center w-full">
 	<div>
 		<img
 			src={product.thumbnail}
 			alt={`Foto de ${product.title}`}
-			class="rounded-full object-cover w-[100px] h-[100px] max-[700px]:w-full max-[700px]:h-[250px]"
+			class="object-cover w-full h-full max-h-[250px]"
 		/>
 	</div>
 	<div class="w-full max-w-[400px]">

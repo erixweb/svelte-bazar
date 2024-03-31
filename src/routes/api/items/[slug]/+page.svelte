@@ -31,15 +31,19 @@
 	{/if}
 	<div class="flex max-[850px]:flex-col gap-[20px]">
 		{#if product}
-			<div class="order-2 w-full flex gap-[40px] max-[850px]:order-1 max-[850px]:justify-center max-[850px]:flex-col items-center">
+			<div
+				class="order-2 w-full flex gap-[40px] max-[850px]:order-1 max-[850px]:justify-center max-[850px]:flex-col items-center"
+			>
 				<div class="w-full flex items-center text-center justify-center">
 					<img
 						src={product?.thumbnail}
 						alt=""
-						class="h-[250px] w-[250px] max-md:h-[250px] max-md:max-w-[250px] object-cover rounded-full"
+						class="h-[300px] w-[250px] max-md:h-[300px] max-md:max-w-[250px] object-cover hover:scale-110 duration-250 transition-all rounded-[12px] shadow-xl"
 					/>
 				</div>
-				<div class="flex flex-col flex-wrap max-[850px]:flex-row gap-[20px] w-full justify-center">
+				<div
+					class="flex flex-col flex-wrap max-[850px]:flex-row gap-[20px] w-full justify-center"
+				>
 					{#each productImages as image}
 						<img src={image} alt="" class="w-[60px] h-[60px] object-cover" />
 					{/each}
@@ -69,7 +73,9 @@
 				<p class="max-w-[300px]">
 					{product?.description}
 				</p>
-				<button class="border-[1px] border-slate-300 rounded-[7px] p-[7px] px-[20px] w-full shadow-[0px_5px_10px] shadow-gray-200 hover:scale-110 duration-[250ms] mt-[40px]">
+				<button
+					class="border-[1px] border-slate-300 rounded-[7px] p-[7px] px-[20px] w-full shadow-[0px_5px_10px] shadow-gray-200 hover:scale-110 duration-[250ms] mt-[40px]"
+				>
 					Comprar
 				</button>
 			</div>
