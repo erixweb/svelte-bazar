@@ -21,7 +21,7 @@
 		<img
 			src={product.thumbnail}
 			alt={`Foto de ${product.title}`}
-			class="object-cover w-full h-full max-h-[250px]"
+			class="object-cover w-full h-full max-h-[250px] rounded-[7px]"
 		/>
 	</div>
 	<div class="w-full max-w-[400px]">
