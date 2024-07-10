@@ -74,7 +74,7 @@
 				portàtils
 			</button>
 		</div>
-		<div class="w-full max-w-[500px] rounded-[7px] min-h-[240px]">
+		<div class="w-full max-w-[500px] rounded-[7px] relative">
 			<div
 				class="inline-flex items-center bg-slate-100 gap-[10px] p-[16px] w-full rounded-[5px]"
 			>
@@ -87,10 +87,10 @@
 					on:keyup={() => handleSearch(search)}
 				/>
 			</div>
-			<div class="w-full max-w-[500px]">
-				<ol class="bg-slate-100 p-[16px] rounded-b-[5px]">
+			<div class="w-full max-w-[500px] absolute">
+				<ol class="bg-slate-100 rounded-b-[5px]">
 					{#each searchItems as item}
-						<li>
+						<li class="py-[10px] px-[16px]">
 							<a href={item.href}>
 								{item.name}
 							</a>
