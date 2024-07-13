@@ -1,5 +1,4 @@
 <script lang="ts">
-	//import { SearchBarProduct } from "../types"
 	import { goto } from "$app/navigation"
 	import { page } from "$app/stores"
 	import IconSearch from "$lib/IconSearch.svelte"
@@ -7,7 +6,7 @@
 	import "../app.css"
 	import json from "../products.json"
 
-	let products = json["products"]
+	let products: any = json["products"]
 	let searchItems: any = []
 
 	let search = $page.url.searchParams.get("cerca") || ""
@@ -31,9 +30,11 @@
 	function handleSearch(searchValue: string) {
 		searchItems = []
 		products
-			.filter((product) => product.title.toLowerCase().includes(searchValue.toLowerCase()))
+			.filter((product: any) =>
+				product.title.toLowerCase().includes(searchValue.toLowerCase()),
+			)
 			.slice(0, 5)
-			.forEach((product) => {
+			.forEach((product: any) => {
 				searchItems.push({ name: product.title, href: `/api/items/${product.id}` })
 			})
 	}

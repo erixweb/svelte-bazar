@@ -8,16 +8,24 @@
 	const id = Number($page.url.pathname.substring(11))
 
 	const product = products.find((product) => product.id === id)
+	const reviews = product?.reviews
 	const productImages: any = product?.images
 	let stars: Array<string> = []
 
-	for (let i = 0; i < 5; i++) {
-		if (i < Math.round(Number(product?.rating))) {
-			stars.push("x")
-		} else {
-			stars.push("o")
+	function getStars(rating: number | undefined) {
+		const stars = []
+		for (let i = 0; i < 5; i++) {
+			if (i < Math.round(Number(rating))) {
+				stars.push("x")
+			} else {
+				stars.push("o")
+			}
 		}
+
+		return stars
 	}
+
+	stars = getStars(product?.rating)
 </script>
 
 <svelte:head>
@@ -81,4 +89,28 @@
 			</div>
 		{/if}
 	</div>
+	<section class="mt-[20px]">
+		<h2 class="font-bold text-[30px]">Reseñas</h2>
+		{#each reviews as review}
+			<article class="py-[10px] border-y-black border-b-2">
+				<h3 class="text-[17px] font-bold text-gray-600">
+					{review.reviewerName} · {new Date(review.date)}
+				</h3>
+				<div class="flex py-[10px]">
+					{#each getStars(review?.rating) as star}
+						{#if star === "x"}
+							<IconStar fill="x" />
+						{:else if star === "o"}
+							<IconStar fill="o" />
+						{:else}
+							<IconStar fill="m" />
+						{/if}
+					{/each}
+				</div>
+				<p>
+					{review?.comment}
+				</p>
+			</article>
+		{/each}
+	</section>
 </main>
