@@ -91,26 +91,28 @@
 	</div>
 	<section class="mt-[20px]">
 		<h2 class="font-bold text-[30px]">Reseñas</h2>
-		{#each reviews as review}
-			<article class="py-[10px] border-y-black border-b-2">
-				<h3 class="text-[17px] font-bold text-gray-600">
-					{review.reviewerName} · {new Date(review.date)}
-				</h3>
-				<div class="flex py-[10px]">
-					{#each getStars(review?.rating) as star}
-						{#if star === "x"}
-							<IconStar fill="x" />
-						{:else if star === "o"}
-							<IconStar fill="o" />
-						{:else}
-							<IconStar fill="m" />
-						{/if}
-					{/each}
-				</div>
-				<p>
-					{review?.comment}
-				</p>
-			</article>
-		{/each}
+		{#if reviews}
+			{#each reviews as review}
+				<article class="py-[10px] border-y-black border-b-2">
+					<h3 class="text-[17px] font-bold text-gray-600">
+						{review.reviewerName} · {new Date(review.date).toLocaleDateString()}
+					</h3>
+					<div class="flex py-[10px]">
+						{#each getStars(review?.rating) as star}
+							{#if star === "x"}
+								<IconStar fill="x" />
+							{:else if star === "o"}
+								<IconStar fill="o" />
+							{:else}
+								<IconStar fill="m" />
+							{/if}
+						{/each}
+					</div>
+					<p>
+						{review?.comment}
+					</p>
+				</article>
+			{/each}
+		{/if}
 	</section>
 </main>
